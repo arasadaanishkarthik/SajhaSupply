@@ -41,17 +41,15 @@ function HoverRevealCard({ type, image, title, supportingLine, children }) {
       onClick={() => setIsPinned((prev) => !prev)}
       role="region"
       aria-expanded={isExpanded}
-      className={`group relative rounded-3xl overflow-hidden min-h-[490px] sm:min-h-[520px] flex flex-col justify-between cursor-pointer transition-all duration-500 ${
-        isChallenge
-          ? 'border border-red-200/70 shadow-lg shadow-red-950/5 hover:border-red-400/80 hover:shadow-2xl hover:shadow-red-900/10'
-          : 'border border-forest-200/70 shadow-lg shadow-forest-950/5 hover:border-forest-400/80 hover:shadow-2xl hover:shadow-forest-900/10'
-      }`}
+      className={`group relative rounded-3xl overflow-hidden min-h-[490px] sm:min-h-[520px] flex flex-col justify-between cursor-pointer transition-all duration-500 ${isChallenge
+        ? 'border border-red-200/70 shadow-lg shadow-red-950/5 hover:border-red-400/80 hover:shadow-2xl hover:shadow-red-900/10'
+        : 'border border-forest-200/70 shadow-lg shadow-forest-950/5 hover:border-forest-400/80 hover:shadow-2xl hover:shadow-forest-900/10'
+        }`}
     >
       {/* 1. PHOTOGRAPHIC COVER LAYER (Default initial state) */}
       <div
-        className={`absolute inset-0 z-10 transition-all duration-500 ease-out flex flex-col justify-between p-8 sm:p-10 ${
-          isExpanded ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100 pointer-events-auto'
-        }`}
+        className={`absolute inset-0 z-10 transition-all duration-500 ease-out flex flex-col justify-between p-8 sm:p-10 ${isExpanded ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100 pointer-events-auto'
+          }`}
       >
         {/* Background Image with subtle zoom on hover */}
         <img
@@ -62,26 +60,23 @@ function HoverRevealCard({ type, image, title, supportingLine, children }) {
         />
         {/* High-contrast gradient overlay */}
         <div
-          className={`absolute inset-0 ${
-            isChallenge
-              ? 'bg-gradient-to-t from-[#1A0A0A]/95 via-[#2E1212]/60 to-[#0F0505]/30'
-              : 'bg-gradient-to-t from-[#071F17]/95 via-[#0D2E22]/60 to-[#071F17]/30'
-          }`}
+          className={`absolute inset-0 ${isChallenge
+            ? 'bg-gradient-to-t from-[#1A0A0A]/95 via-[#2E1212]/60 to-[#0F0505]/30'
+            : 'bg-gradient-to-t from-[#071F17]/95 via-[#0D2E22]/60 to-[#071F17]/30'
+            }`}
         />
 
         {/* Top Tag Badge */}
         <div className="relative z-10">
           <span
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md border ${
-              isChallenge
-                ? 'bg-red-500/25 text-red-100 border-red-400/40 shadow-xs'
-                : 'bg-forest-500/30 text-emerald-100 border-emerald-400/40 shadow-xs'
-            }`}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md border ${isChallenge
+              ? 'bg-red-500/25 text-red-100 border-red-400/40 shadow-xs'
+              : 'bg-forest-500/30 text-emerald-100 border-emerald-400/40 shadow-xs'
+              }`}
           >
             <span
-              className={`w-2 h-2 rounded-full ${
-                isChallenge ? 'bg-red-400 animate-pulse' : 'bg-emerald-400 animate-pulse'
-              }`}
+              className={`w-2 h-2 rounded-full ${isChallenge ? 'bg-red-400 animate-pulse' : 'bg-emerald-400 animate-pulse'
+                }`}
             />
             {isChallenge ? 'The Rural Supply Challenge' : 'The SajhaSupply Solution'}
           </span>
@@ -105,15 +100,13 @@ function HoverRevealCard({ type, image, title, supportingLine, children }) {
 
       {/* 2. WORDS / BREAKDOWN LAYER (Smoothly revealed on hover while keeping cursor on card) */}
       <div
-        className={`relative z-20 w-full h-full p-8 sm:p-10 flex flex-col justify-between transition-all duration-500 ease-out ${
-          isChallenge
-            ? 'bg-gradient-to-br from-white/98 via-[#FFF9F9]/95 to-[#FDE8E8]/90 backdrop-blur-xl'
-            : 'bg-gradient-to-br from-white/98 via-[#F7FAF8]/95 to-[#E8F2EA]/90 backdrop-blur-xl'
-        } ${
-          isExpanded
+        className={`relative z-20 w-full h-full p-8 sm:p-10 flex flex-col justify-between transition-all duration-500 ease-out ${isChallenge
+          ? 'bg-gradient-to-br from-white/98 via-[#FFF9F9]/95 to-[#FDE8E8]/90 backdrop-blur-xl'
+          : 'bg-gradient-to-br from-white/98 via-[#F7FAF8]/95 to-[#E8F2EA]/90 backdrop-blur-xl'
+          } ${isExpanded
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 translate-y-4 pointer-events-none'
-        }`}
+          }`}
       >
         <div className="w-full">
           {children}
