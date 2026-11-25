@@ -1,4 +1,3 @@
-import PublicNavbar from '../../components/navigation/PublicNavbar';
 import Footer from '../../components/layout/Footer';
 import { motion } from 'framer-motion';
 import { Leaf, Target, Eye, Heart, CheckCircle2 } from 'lucide-react';
@@ -9,7 +8,6 @@ export default function AboutPage() {
       <div className="ambient-glow-tl" />
       <div className="ambient-glow-br" />
 
-      <PublicNavbar />
       <div className="relative z-10 pt-28 pb-16">
         {/* Hero */}
         <div className="py-14 px-4">

@@ -6,8 +6,9 @@ import {
   ArrowRight, Users, TrendingDown, Truck, Brain, BarChart3,
   ShoppingBag, Star, ChevronRight, ChevronLeft, Package, Handshake, Leaf, MapPin, Zap, Sparkles
 } from 'lucide-react';
-import PublicNavbar from '../../components/navigation/PublicNavbar';
 import Footer from '../../components/layout/Footer';
+import ButtonAnimatedGradient from '@/components/ui/button-animated-gradient';
+import VoyageSlider from '@/components/ui/voyage-slider';
 import confetti from 'canvas-confetti';
 import { toast } from 'sonner';
 
@@ -146,12 +147,12 @@ const features = [
 ];
 
 const steps = [
-  { n: '01', title: 'Shopkeepers Select Products', desc: 'Browse our FMCG catalog and select the items your village shop needs.' },
-  { n: '02', title: 'Create or Join a Collective Order', desc: 'Initiate a village group order or join an active one nearby with 1 click.' },
-  { n: '03', title: 'Multiple Villages Pool Quantities', desc: 'Rampur, Shivpur, and Anandpur combine requirements into one high-volume order.' },
-  { n: '04', title: 'Suppliers Receive Bulk Order', desc: 'Verified manufacturers confirm bulk discounts as volume thresholds are met.' },
-  { n: '05', title: 'Smart Route Dispatch', desc: 'AI-grouped transport hubs deliver consolidated orders directly to village points.' },
-  { n: '06', title: 'Shopkeepers Enjoy Big Savings', desc: 'Receive high-quality FMCG products at 10–25% lower wholesale prices.' },
+  { n: '01', title: 'Shopkeepers Select Products', desc: 'Browse our FMCG catalog and select the items your village shop needs.', image: `${baseUrl}images/hero/hero-farm.jpg` },
+  { n: '02', title: 'Create or Join a Collective Order', desc: 'Initiate a village group order or join an active one nearby with 1 click.', image: `${baseUrl}images/cards/challenge-kirana.jpg` },
+  { n: '03', title: 'Multiple Villages Pool Quantities', desc: 'Rampur, Shivpur, and Anandpur combine requirements into one high-volume order.', image: `${baseUrl}images/hero/hero-market.jpg` },
+  { n: '04', title: 'Suppliers Receive Bulk Order', desc: 'Verified manufacturers confirm bulk discounts as volume thresholds are met.', image: `${baseUrl}images/cards/solution-warehouse.jpg` },
+  { n: '05', title: 'Smart Route Dispatch', desc: 'AI-grouped transport hubs deliver consolidated orders directly to village points.', image: `${baseUrl}images/hero/hero-warehouse.jpg` },
+  { n: '06', title: 'Shopkeepers Enjoy Big Savings', desc: 'Receive high-quality FMCG products at 10–25% lower wholesale prices.', image: `${baseUrl}images/hero/hero-grains.jpg` },
 ];
 
 const sampleProducts = [
@@ -219,8 +220,6 @@ export default function HomePage() {
       <div className="ambient-glow-tl" />
       <div className="ambient-glow-br" />
       <div className="ambient-glow-center" />
-
-      <PublicNavbar />
 
       {/* Full-width photographic hero carousel */}
       <section
@@ -290,12 +289,18 @@ export default function HomePage() {
               variants={fadeUp}
               className="flex flex-wrap gap-3.5 justify-center mt-10"
             >
-              <Link to="/register" className="btn-primary flex items-center gap-2 text-sm sm:text-base px-7 py-3.5">
-                Get Started <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/how-it-works" className="btn-secondary flex items-center gap-2 text-sm sm:text-base px-7 py-3.5">
-                Explore How It Works <ChevronRight className="w-4 h-4" />
-              </Link>
+              <ButtonAnimatedGradient
+                to="/register"
+                label="Get Started"
+                icon={<ArrowRight className="size-4 shrink-0" />}
+                className="bg-forest-600 text-white border-forest-400/50 px-7 py-3.5 text-sm sm:text-base tracking-normal shadow-lg shadow-forest-950/30"
+              />
+              <ButtonAnimatedGradient
+                to="/how-it-works"
+                label="Explore How It Works"
+                icon={<ChevronRight className="size-4 shrink-0" />}
+                className="bg-white/75 backdrop-blur-md text-forest-800 border-white/80 px-7 py-3.5 text-sm sm:text-base tracking-normal shadow-md"
+              />
             </motion.div>
 
             {/* Subtle floating glass highlight badges */}
@@ -566,10 +571,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How it Works: 6 Glass Cards */}
+      {/* How it Works: 3D Voyage Slider */}
       <section className="relative z-10 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="badge bg-forest-100/70 text-forest-800 border border-forest-200 mb-3">
               Procurement Journey
             </span>
@@ -578,22 +583,7 @@ export default function HomePage() {
               Six simple steps that transform how rural shopkeepers procure everyday products.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="glass-card p-6 hover:scale-[1.02] transition-transform duration-200"
-              >
-                <div className="text-3xl font-black text-forest-200 mb-2">{step.n}</div>
-                <h3 className="font-bold text-[#17251F] text-base mb-2">{step.title}</h3>
-                <p className="text-sm text-[#64746B] leading-relaxed">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+          <VoyageSlider slides={steps} />
         </div>
       </section>
 

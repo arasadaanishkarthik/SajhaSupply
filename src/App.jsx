@@ -1,8 +1,10 @@
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { HashRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import PublicNavbar from './components/navigation/PublicNavbar';
 
 // Public Pages
 import HomePage from './pages/public/HomePage';
@@ -23,6 +25,21 @@ import SupplierDashboard from './pages/supplier/SupplierDashboard';
 import DeliveryDashboard from './pages/delivery/DeliveryDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
 
+function PublicLayout() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <>
+      <PublicNavbar />
+      <Outlet />
+    </>
+  );
+}
+
 export default function App() {
   return (
     <Router>
@@ -37,13 +54,15 @@ export default function App() {
             }}
           />
           <Routes>
-            {/* Public */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/how-it-works" element={<HowItWorksPage />} />
-            <Route path="/features" element={<FeaturesPage />} />
-            <Route path="/explore" element={<ExplorePage />} />
-            <Route path="/contact" element={<ContactPage />} />
+            {/* Public (persistent navbar shell preserves LiquidNavbar physics across pages) */}
+            <Route element={<PublicLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/how-it-works" element={<HowItWorksPage />} />
+              <Route path="/features" element={<FeaturesPage />} />
+              <Route path="/explore" element={<ExplorePage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Route>
 
             {/* Auth */}
             <Route path="/login" element={<LoginPage />} />

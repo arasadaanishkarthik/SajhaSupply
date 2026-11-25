@@ -1,4 +1,3 @@
-import PublicNavbar from '../../components/navigation/PublicNavbar';
 import Footer from '../../components/layout/Footer';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -79,7 +78,6 @@ export default function FeaturesPage() {
       <div className="ambient-glow-tl" />
       <div className="ambient-glow-br" />
 
-      <PublicNavbar />
       <div className="relative z-10 pt-28 pb-16">
         <div className="py-14 px-4 text-center">
           <span className="badge bg-forest-100/80 text-forest-800 border border-forest-200 mb-3">

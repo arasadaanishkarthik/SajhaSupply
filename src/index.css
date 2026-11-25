@@ -7,7 +7,7 @@
 @font-face {
   font-family: 'Tempting';
   src: url('/fonts/Tempting.otf') format('opentype'),
-       url('/fonts/Tempting.ttf') format('truetype');
+    url('/fonts/Tempting.ttf') format('truetype');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -18,11 +18,27 @@
     --font-primary: 'Inter', system-ui, sans-serif;
     --font-marketing: 'Lora', Georgia, serif;
     --font-logo: 'Tempting', 'Inter', system-ui, sans-serif;
+
+    --background: 120 14% 98%;
+    --foreground: 155 24% 12%;
+    --primary: 157 54% 19%;
+    --primary-200: 152 43% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 130 29% 93%;
+    --secondary-foreground: 157 54% 19%;
+    --accent: 130 29% 93%;
+    --accent-foreground: 157 54% 19%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 140 16% 84%;
+    --input: 140 16% 84%;
+    --ring: 157 54% 19%;
   }
 
   html {
     scroll-behavior: smooth;
   }
+
   html,
   body,
   #root {
@@ -33,16 +49,19 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
+
   * {
     box-sizing: border-box;
     font-family: inherit;
   }
+
   button,
   input,
   textarea,
   select {
     font: inherit;
   }
+
   h1,
   h2,
   h3,
@@ -157,6 +176,21 @@
     box-shadow: 0 4px 24px rgba(23, 76, 56, 0.04);
   }
 
+  .sajha-liquid-nav .nimbus-item {
+    height: 36px;
+    padding: 0 11px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  @media (min-width: 1280px) {
+    .sajha-liquid-nav .nimbus-item {
+      padding: 0 14px;
+      font-size: 13.5px;
+      gap: 7px;
+    }
+  }
+
   .glass-tabs {
     background: rgba(255, 255, 255, 0.60);
     backdrop-filter: blur(16px);
@@ -180,6 +214,7 @@
     @apply bg-forest-600 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 shadow-sm active:scale-[0.98];
     box-shadow: 0 4px 14px rgba(23, 76, 56, 0.25);
   }
+
   .btn-primary:hover {
     @apply bg-forest-700;
     box-shadow: 0 6px 20px rgba(23, 76, 56, 0.35);
@@ -193,6 +228,7 @@
     color: #174C38;
     @apply px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 active:scale-[0.98];
   }
+
   .btn-secondary:hover {
     background: rgba(232, 242, 234, 0.75);
     box-shadow: 0 4px 16px rgba(23, 76, 56, 0.10);
@@ -201,6 +237,7 @@
   .btn-ghost {
     @apply text-[#64746B] px-4 py-2 rounded-xl font-medium text-sm transition-all duration-200;
   }
+
   .btn-ghost:hover {
     background: rgba(255, 255, 255, 0.60);
     color: #174C38;
@@ -213,11 +250,13 @@
     font-weight: 700;
     background: rgba(232, 242, 234, 0.40);
   }
+
   .tab-inactive {
     color: #64746B;
     border-bottom: 2px solid transparent;
     font-weight: 500;
   }
+
   .tab-inactive:hover {
     color: #17251F;
     border-bottom-color: rgba(23, 76, 56, 0.3);
@@ -233,6 +272,7 @@
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
     @apply w-full rounded-xl px-4 py-2.5 text-sm text-[#17251F] focus:outline-none focus:ring-2 focus:ring-forest-500/40 focus:border-forest-600 transition-all duration-200;
   }
+
   .input::placeholder {
     color: #94A39B;
   }
@@ -251,6 +291,7 @@
     @apply text-3xl md:text-4xl font-bold text-[#17251F] tracking-tight;
     font-family: var(--font-marketing);
   }
+
   .section-subtitle {
     @apply text-[#64746B] mt-2.5 text-base md:text-lg font-normal;
   }
@@ -261,9 +302,11 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
   .bg-page {
     background-color: #F8FAF8;
   }
@@ -312,13 +355,16 @@
   width: 7px;
   height: 7px;
 }
+
 ::-webkit-scrollbar-track {
   background: rgba(240, 245, 241, 0.6);
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(159, 203, 166, 0.7);
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(47, 118, 85, 0.8);
 }

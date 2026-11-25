@@ -1,17 +1,21 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ShoppingCart, Leaf } from 'lucide-react';
+import {
+  Menu, X, ShoppingCart, Leaf,
+  Home, Compass, Sparkles, ShoppingBag, Info, Mail
+} from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { LiquidNavbar } from '@/components/ui/liquid-glass-navbar';
 
 const navLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'How It Works', to: '/how-it-works' },
-  { label: 'Features', to: '/features' },
-  { label: 'Explore Products', to: '/explore' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Home', to: '/', fx: 'glow' },
+  { label: 'How It Works', to: '/how-it-works', fx: 'spin' },
+  { label: 'Features', to: '/features', fx: 'pop' },
+  { label: 'Explore Products', to: '/explore', fx: 'drop' },
+  { label: 'About', to: '/about', fx: 'wave' },
+  { label: 'Contact', to: '/contact', fx: 'plane' },
 ];
 
 export default function PublicNavbar() {
@@ -20,6 +24,25 @@ export default function PublicNavbar() {
   const { totalItems } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const liquidItems = useMemo(() => {
+    const icons = [
+      <Home className="w-4 h-4" key="home" />,
+      <Compass className="w-4 h-4" key="how" />,
+      <Sparkles className="w-4 h-4" key="features" />,
+      <ShoppingBag className="w-4 h-4" key="explore" />,
+      <Info className="w-4 h-4" key="about" />,
+      <Mail className="w-4 h-4" key="contact" />,
+    ];
+    return navLinks.map((link, index) => ({
+      label: link.label,
+      icon: icons[index],
+      fx: link.fx,
+    }));
+  }, []);
+
+  const matchedIndex = navLinks.findIndex((link) => link.to === location.pathname);
+  const activeIndex = matchedIndex === -1 ? 0 : matchedIndex;
 
   const handleDashboard = () => {
     const paths = {
@@ -50,28 +73,23 @@ export default function PublicNavbar() {
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-1 bg-white/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/60 shadow-xs">
-            {navLinks.map(link => {
-              const isActive = location.pathname === link.to;
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-200 ${
-                    isActive
-                      ? 'bg-forest-600 text-white shadow-xs'
-                      : 'text-[#64746B] hover:text-[#17251F] hover:bg-white/60'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+          {/* Desktop Nav Links - Liquid Glass Waterline */}
+          <div className="hidden lg:flex items-center justify-center">
+            <LiquidNavbar
+              tone="light"
+              compact={false}
+              active={activeIndex}
+              items={liquidItems}
+              onChange={(index) => {
+                const target = navLinks[index];
+                if (target) navigate(target.to);
+              }}
+              className="sajha-liquid-nav"
+            />
           </div>
 
           {/* Right Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <Link
               to="/explore"
               className="relative p-2 rounded-xl text-[#64746B] hover:text-forest-700 hover:bg-white/60 transition-colors"
@@ -108,7 +126,7 @@ export default function PublicNavbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-xl text-[#17251F] hover:bg-white/60 transition-colors"
+            className="lg:hidden p-2 rounded-xl text-[#17251F] hover:bg-white/60 transition-colors"
             onClick={() => setMobileOpen(v => !v)}
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -123,7 +141,7 @@ export default function PublicNavbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-white/60 bg-white/90 backdrop-blur-2xl px-5 py-4 flex flex-col gap-2.5 shadow-lg"
+            className="lg:hidden border-t border-white/60 bg-white/90 backdrop-blur-2xl px-5 py-4 flex flex-col gap-2.5 shadow-lg"
           >
             {navLinks.map(link => (
               <Link

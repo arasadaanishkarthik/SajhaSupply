@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PublicNavbar from '../../components/navigation/PublicNavbar';
 import Footer from '../../components/layout/Footer';
 import { products, categories } from '../../data/products';
 import { useCart } from '../../context/CartContext';
@@ -25,7 +24,6 @@ export default function ExplorePage() {
       <div className="ambient-glow-tl" />
       <div className="ambient-glow-br" />
 
-      <PublicNavbar />
       <div className="relative z-10 pt-28 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
