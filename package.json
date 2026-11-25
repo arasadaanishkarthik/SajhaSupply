@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -t",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -30,6 +32,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.7.0",
+    "gh-pages": "^6.3.0",
     "oxlint": "^1.90.0",
     "postcss": "^8.5.33",
     "tailwindcss": "^3.4.17",

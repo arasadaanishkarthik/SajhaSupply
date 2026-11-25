@@ -6,14 +6,14 @@ import { defineConfig } from 'vite'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/SajhaSupply/' : '/',
+  base: command === 'build' ? '/SajhaSupply/' : '/',
   build: {
     rollupOptions: {
       output: {
@@ -25,4 +25,4 @@ export default defineConfig({
       }
     }
   }
-})
+}))
